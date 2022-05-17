@@ -4,29 +4,39 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 
 ![](assets/banner.png)
 
-# JsDelivr
+# JsDelivr 
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.1.0/dist/messagebox.min.js"></script>
 ```
 
-# Usage 📝
+# NPM module 
 
-You can import the library into you website with [JsDelivr](#JsDelivr) or, you can use the npm module 
+Install the npm module 
 
 ```bash
 npm install messagebox.js
 ```
 
-And use browserify to bundle the library with your project.
+And import it in your project 
+
+```js
+const MessageBox = require('messagebox.js');
+```
+
+**⚠️ You will need to bundle the package with your application (for example with browserify) because this library only works in the browser**
 
 ```bash
-browserify my-app.js -o bundle.js
+browserify index.js -o bundle.js
 ```
+
+# Setting up 
+
+You can import the library into you website with [JsDelivr](#JsDelivr) or, you can use the [npm module](#NPM-module) and import it in your project.
 
 **You also need to import the css file to your website** => [**Download**](https://raw.githubusercontent.com/SkwalExe/MessageBox.js/main/src/style.css)
 
-## Your first message box ✨
+# Your first message box ✨
 
 ```js
 // --- node.js only ---
@@ -47,6 +57,8 @@ myMessageBox.show().then(response => {
   console.log('The user clicked : ' + response)
 })
 ```
+
+![](assets/1.png)
 
 *The user clicks on the "ok" button.*
 
@@ -76,6 +88,10 @@ Example:
 - `#ff0000`
 - `red`
 - `rgb(255, 0, 0)`
+
+# Custom styles 💅
+
+You can customize the look of the message box by adding your own css styles to the `style.css` file.
 
 # final
 
