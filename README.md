@@ -24,6 +24,8 @@ And use browserify to bundle the library with your project.
 browserify my-app.js -o bundle.js
 ```
 
+**You also need to import the css file to your website** => [**Download**](https://raw.githubusercontent.com/SkwalExe/MessageBox.js/main/src/style.css)
+
 ## Your first message box ✨
 
 ```js
