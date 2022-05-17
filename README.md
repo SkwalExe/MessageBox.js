@@ -15,7 +15,7 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 You can import the library into you website with [JsDelivr](#JsDelivr) or, you can use the npm module 
 
 ```bash
-npm install messagebox
+npm install messagebox.js
 ```
 
 And use browserify to bundle the library with your project.
@@ -28,7 +28,7 @@ browserify my-app.js -o bundle.js
 
 ```js
 // --- node.js only ---
-const MessageBox = require('messagebox');
+const MessageBox = require('messagebox.js');
 // --------------------
 
 let myMessageBox = new MessageBox()

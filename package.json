@@ -1,5 +1,5 @@
 {
-  "name": "messagebox",
+  "name": "messagebox.js",
   "version": "0.1.0",
   "description": "create beautiful and customizable message boxes for your website",
   "main": "src/index.js",
