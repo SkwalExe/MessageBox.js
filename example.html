@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MessageBox.js</title>
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+        body {
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            height: 100vh;
+            background-image: url(assets/background.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-direction: column;
+        }
+        
+        #spawnButton {
+            cursor: pointer;
+        }
+        
+        #clicked {
+            color: greenyellow
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="spawnButton">Click me to spawn a message box !</h1>
+    <h2>You clicked <span id="clicked">Nothing</span></h2>
+    <script src="dist/messagebox.min.js"></script>
+    <script>
+        const spawnButton = document.getElementById('spawnButton');
+        const clicked = document.getElementById('clicked');
+        const spawn = () => {
+            let message = new MessageBox()
+                .setTitle("Lorem Ipsum")
+                .setMessage("Cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.")
+                .addButton("Lorem", "green")
+                .addButton("Ipsum", "red")
+                .addButton("Dolor", "blue")
+                .addButton("Sit", "purple")
+
+
+
+            message.show().then(x => clicked.textContent = x)
+        }
+        spawnButton.onclick = spawn
+    </script>
+</body>
+
+</html>
