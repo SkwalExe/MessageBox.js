@@ -1,0 +1,33 @@
+{
+  "name": "messagebox",
+  "version": "0.1.0",
+  "description": "create beautiful and customizable message boxes for your website",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "build": "npm run lint && browserify -s MessageBox src/index.js | uglifyjs -c > dist/messagebox.min.js",
+    "lint": "eslint src/**.js src/**/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkwalExe/messagebox.js.git"
+  },
+  "keywords": [
+    "message",
+    "box",
+    "js",
+    "lib",
+    "messagebox"
+  ],
+  "author": "Léopold Koprivnik Ibghy, @SkwalExe <skwal.net@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SkwalExe/messagebox.js/issues"
+  },
+  "homepage": "https://github.com/SkwalExe/messagebox.js#readme",
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "eslint": "^8.15.0",
+    "uglify-js": "^3.15.5"
+  }
+}
