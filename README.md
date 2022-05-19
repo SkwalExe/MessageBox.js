@@ -7,7 +7,7 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 # JsDelivr 
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.1.0/dist/messagebox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.2.0/dist/messagebox.min.js"></script>
 ```
 
 # NPM module 
@@ -34,7 +34,11 @@ browserify index.js -o bundle.js
 
 You can import the library into you website with [JsDelivr](#JsDelivr) or, you can use the [npm module](#NPM-module) and import it in your project.
 
-**You also need to import the css file to your website** => [**Download**](https://raw.githubusercontent.com/SkwalExe/MessageBox.js/main/src/style.css)
+**You also need to import the css file to your website**
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.2.0/src/style.css">
+```
 
 # Your first message box ✨
 
@@ -118,7 +122,7 @@ npm install --save-dev
 
 5. Then make your changes
 
-6. Update the changelog and version number if needed (using [Semantic Versioning](https://semver.org)) 
+6. Update the changelog and version number if needed (using [Semantic Versioning](https://semver.org)) also, update the version number in the JsDelivr links (js and css)
   ```bash
   # bug fix
   npm version patch --no-git-tag-version
