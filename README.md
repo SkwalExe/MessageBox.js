@@ -20,13 +20,7 @@ npm install messagebox.js
 
 And import it in your project 
 
-```js
-const MessageBox = require('messagebox.js');
-```
-
-**⚠️ You will need to bundle the package with your application (for example with browserify) because this library only works in the browser**
-
-```bash
+```jshttps://cdn.jsdelivr.net/npm/toasteur@0.2.0/src/style.css
 browserify index.js -o bundle.js
 ```
 
@@ -37,7 +31,7 @@ You can import the library into you website with [JsDelivr](#JsDelivr) or, you c
 **You also need to import the css file to your website**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.2.0/src/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.2.0/dist/themes/messagebox-default.min.css">
 ```
 
 # Your first message box ✨
