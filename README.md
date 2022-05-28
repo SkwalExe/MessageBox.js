@@ -11,7 +11,7 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 # JsDelivr 
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.2.0/dist/messagebox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.3.0/dist/messagebox.min.js"></script>
 ```
 
 # NPM module 
@@ -41,7 +41,7 @@ You can import the library into you website with [JsDelivr](#JsDelivr) or, you c
 **You also need to import the css file to your website**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.2.0/dist/themes/messagebox-default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.3.0/dist/themes/messagebox-default.min.css">
 ```
 
 # Your first message box ✨
@@ -96,6 +96,29 @@ Example:
 - `#ff0000`
 - `red`
 - `rgb(255, 0, 0)`
+
+## the `.askForFile()` method 📝
+
+This method allows you to ask the user to select a file, see the section below.
+
+# File selection 📂
+
+You can make your message box ask the user to select a file.
+
+```js
+let myMessageBox = new MessageBox()
+  .setTitle('Please select a file')
+  .setMessage('Please select a file to upload')
+  .askForFile() // <---
+
+myMessageBox.show().then(file => ...)
+```
+
+![](assets/2.png)
+
+This will return a `File` object.
+
+**Note: custom buttons will be ignored**
 
 # Custom styles 💅
 
