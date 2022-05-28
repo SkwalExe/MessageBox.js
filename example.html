@@ -53,10 +53,10 @@
             message.show().then(x => {
                 if (x == "Choose a file") {
                     let file = new MessageBox()
-                        .setTitle("Choose a file")
-                        .setMessage("Choose a file")
-                        .askForFile()
-                        .show().then(x => clicked.textContent = x == null ? "Nothing" : x.name);
+                        .setTitle("Choose one are multiple images")
+                        .setMessage("You can only import images")
+                        .askForFile(false, "image/*")
+                        .show().then(x => clicked.textContent = x == null ? "Nothing" : Array.from(x).map(a => a.name).join(', '));
                 }
                 clicked.textContent = x
             })
