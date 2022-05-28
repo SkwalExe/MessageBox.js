@@ -11,7 +11,7 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 # JsDelivr 
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.3.0/dist/messagebox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.4.0/dist/messagebox.min.js"></script>
 ```
 
 # NPM module 
@@ -41,7 +41,7 @@ You can import the library into you website with [JsDelivr](#JsDelivr) or, you c
 **You also need to import the css file to your website**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.3.0/dist/themes/messagebox-default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.4.0/dist/themes/messagebox-default.min.css">
 ```
 
 # Your first message box ✨
@@ -99,7 +99,15 @@ Example:
 
 ## the `.askForFile()` method 📝
 
-This method allows you to ask the user to select a file, see the section below.
+The `askForFile(multiple, acceptedTypes)` method allows you to ask the user to select a file, see the section below.
+
+The `multiple` option is an optional parameter which  is a boolean that defines if the user can select multiple files.
+
+The `acceptedTypes` option is an optional parameter which is a string that defines the MIME types of files that the user can select. You can put multiple types separated by a comma and use wildcards.
+
+Example
+- `image/gif, video/*`
+- `image/*, video/*`
 
 # File selection 📂
 
@@ -109,7 +117,7 @@ You can make your message box ask the user to select a file.
 let myMessageBox = new MessageBox()
   .setTitle('Please select a file')
   .setMessage('Please select a file to upload')
-  .askForFile() // <---
+  .askForFile(true, "image/*") // <---
 
 myMessageBox.show().then(file => ...)
 ```
@@ -117,6 +125,8 @@ myMessageBox.show().then(file => ...)
 ![](assets/2.png)
 
 This will return a `File` object.
+
+See [File API](https://developer.mozilla.org/en-US/docs/Web/API/File) for more information.
 
 **Note: custom buttons will be ignored**
 

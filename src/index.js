@@ -18,8 +18,10 @@ const MessageBox = class {
       return this;
     }
 
-    this.askForFile = () => {
+    this.askForFile = (multiple = false, accept = null) => {
       this.askingForFile = true;
+      this.multipleFiles = multiple;
+      this.accept = accept;
       return this;
     }
 
@@ -30,6 +32,12 @@ const MessageBox = class {
     }
 
     this.show = () => new Promise(resolve => {
+
+      let validateFileFormat = (acceptedTypes, type) => {
+        return acceptedTypes.replace(/\s/g, '').split(',').filter(accept => {
+          return new RegExp(accept.replace(/\*/g, '.*')).test(type);
+        }).length > 0;
+      }
 
       if (this.askingForFile) {
         this.buttons = [
@@ -66,9 +74,12 @@ const MessageBox = class {
         buttonElement.addEventListener('click', () => {
           boxContainer.remove();
           if (this.askingForFile) {
-            if (button.text === 'Select')
+            if (button.text === 'Select') {
+              if (this.multipleFiles)
+                resolve(this.fileInput.files || null);
+
               resolve(this.fileInput.files[0] || null);
-            else if (button.text === 'Cancel')
+            } else if (button.text === 'Cancel')
               resolve(null);
           }
           resolve(button.text);
@@ -81,6 +92,10 @@ const MessageBox = class {
         this.fileInput = document.createElement('input');
         this.fileInput.type = 'file';
         this.fileInput.classList.add('message-box-file-input');
+        if (this.multipleFiles)
+          this.fileInput.setAttribute('multiple', 'multiple');
+        if (this.accept)
+          this.fileInput.accept = this.accept;
 
         this.inputText = document.createElement('p');
         this.inputText.textContent = 'Select or drop a file';
@@ -94,6 +109,14 @@ const MessageBox = class {
         this.dropZone.ondrop = (e) => {
           e.preventDefault();
           e.stopPropagation();
+          if (this.accept && Array.from(e.dataTransfer.files).some(file => !validateFileFormat(this.accept, file.type))) {
+            this.inputText.textContent = 'Invalid file format, accpeted formats are: ' + this.accept;
+            return;
+          }
+          if (!this.multipleFiles && e.dataTransfer.files.length > 1) {
+            this.inputText.textContent = 'Only one file can be selected';
+            return;
+          }
           this.fileInput.files = e.dataTransfer.files;
           this.fileInput.oninput();
         }
@@ -104,7 +127,7 @@ const MessageBox = class {
         }
 
         this.fileInput.oninput = () => {
-          this.inputText.textContent = this.fileInput.files[0].name;
+          this.inputText.textContent = Array.from(this.fileInput.files).map(file => file.name).join(', ');
         }
         this.dropZone.appendChild(this.inputText);
         this.dropZone.appendChild(this.fileInput);
