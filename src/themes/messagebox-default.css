@@ -19,11 +19,11 @@
 
 .message-box-container * {
     color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 
 .message-box {
-    box-sizing: border-box;
     max-width: 500px;
     height: max-content;
     max-height: 100%;
@@ -83,4 +83,30 @@
 
 .message-box-button:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+.message-box-drop-zone {
+    border: 4px dashed #6742D1;
+    border-radius: 10px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    padding: 45%;
+    padding: 10px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-box-drop-zone:-moz-drag-over {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.message-box-file-input {
+    display: none;
 }
