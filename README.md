@@ -41,7 +41,7 @@ You can import the library into you website with [JsDelivr](#JsDelivr) or, you c
 **You also need to import the css file to your website**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@0.4.0/dist/themes/messagebox-default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@v0.4.0/dist/themes/messagebox-default.min.css">
 ```
 
 # Your first message box ✨
