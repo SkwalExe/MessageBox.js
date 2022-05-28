@@ -4,6 +4,10 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 
 ![](assets/banner.png)
 
+# Example
+
+[A simple example of the usage of the library](https://skwalexe.github.io/MessageBox.js/example.html) is provided in this repository.
+
 # JsDelivr 
 
 ```html
