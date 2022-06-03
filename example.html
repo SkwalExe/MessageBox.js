@@ -23,6 +23,18 @@
             flex-direction: column;
         }
         
+        .container {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 10px
+        }
+        
         #spawnButton {
             cursor: pointer;
         }
@@ -34,8 +46,10 @@
 </head>
 
 <body>
-    <h1 id="spawnButton">Click me to spawn a message box !</h1>
-    <h2>You selected <span id="clicked">Nothing</span></h2>
+    <div class="container">
+        <h1 id="spawnButton">Click me to spawn a message box !</h1>
+        <h2>You selected <span id="clicked">Nothing</span></h2>
+    </div>
     <script src="dist/messagebox.min.js"></script>
     <script>
         const spawnButton = document.getElementById('spawnButton');
@@ -45,7 +59,7 @@
                 .setTitle("Lorem Ipsum")
                 .setMessage("Cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.")
                 .addButton("Choose a file", "green")
-                .addButton("Ipsum", "red")
+                .addButton("Enter your name", "red")
                 .addButton("Dolor", "blue")
                 .addButton("Sit", "purple")
 
@@ -57,8 +71,15 @@
                         .setMessage("You can only import images")
                         .askForFile(false, "image/*")
                         .show().then(x => clicked.textContent = x == null ? "Nothing" : Array.from(x).map(a => a.name).join(', '));
+                } else if (x == "Enter your name") {
+                    let name = new MessageBox()
+                        .setTitle("Enter your name")
+                        .setMessage('25 chars max')
+                        .askForInput("abcd123", 25)
+                        .show().then(x => clicked.textContent = x == null ? "Nothing" : x);
+                } else {
+                    clicked.textContent = x;
                 }
-                clicked.textContent = x
             })
         }
         spawnButton.onclick = spawn

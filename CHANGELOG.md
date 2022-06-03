@@ -1,3 +1,6 @@
+# 0.5.0
+- New feature : text input
+
 # 0.4.0
 - Allow multiple files selection
 - Allow MIME types choice

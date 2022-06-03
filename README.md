@@ -11,7 +11,7 @@ Create beautiful and customizable message boxes 💬 for your website ✨
 # JsDelivr 
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.4.0/dist/messagebox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.5.0/dist/messagebox.min.js"></script>
 ```
 
 # NPM module 
@@ -41,7 +41,7 @@ You can import the library into you website with [JsDelivr](#JsDelivr) or, you c
 **You also need to import the css file to your website**
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@v0.4.0/dist/themes/messagebox-default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/messagebox.js@v0.5.0/dist/themes/messagebox-default.min.css">
 ```
 
 # Your first message box ✨
@@ -109,6 +109,14 @@ Example
 - `image/gif, video/*`
 - `image/*, video/*`
 
+## the `.askForInput()` method 📝
+
+The `askForInput(placeholder, maxChars)` method allows you to ask the user to enter text.
+
+The `placeholder` parameter is an optional parameter which is the text that will be displayed in the input field by default.
+
+The `maxChars` parameter is an optional parameter which is the maximum number of characters that the user can enter.
+
 # File selection 📂
 
 You can make your message box ask the user to select a file.
@@ -129,6 +137,23 @@ This will return a `File` object.
 See [File API](https://developer.mozilla.org/en-US/docs/Web/API/File) for more information.
 
 **Note: custom buttons will be ignored**
+
+# Text inputs ⌨️
+
+You can make your message box ask the user for text input.
+
+```js
+let myMessageBox = new MessageBox()
+  .setTitle('Please enter your name')
+  .setMessage('Please enter your name')
+  .askForInput('John Doe', 20) // <---- 'John Doe' is the placeholder, 20 is the maximum number of characters
+
+myMessageBox.show().then(text => ...)
+```
+
+![](assets/3.png)
+
+This will return a string or `null` if the user clicked on the "cancel" button.
 
 # Custom styles 💅
 

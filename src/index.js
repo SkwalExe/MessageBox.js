@@ -1,10 +1,5 @@
 const MessageBox = class {
-  constructor(title = null, message = null, buttons = null, askingForFile = false) {
-    this.setTitle = (title) => {
-      this.title = title;
-      return this;
-    }
-
+  constructor() {
     this.Colors = {
       blue: '#3992D0',
       red: '#E74C3C',
@@ -13,36 +8,64 @@ const MessageBox = class {
       purple: '#6742D1'
     }
 
+    this.message = ''
+    this.title = ''
+
+    this.buttons = [];
+
+    this.askingFor = 'button'
+
+    this.setTitle = (title) => {
+      this.title = title;
+      return this;
+    }
+
     this.setMessage = (message) => {
       this.message = message;
       return this;
     }
 
-    this.askForFile = (multiple = false, accept = null) => {
-      this.askingForFile = true;
-      this.multipleFiles = multiple;
-      this.accept = accept;
-      return this;
-    }
-
-    this.buttons = [];
     this.addButton = (text, color = 'blue') => {
       this.buttons.push({ text: text, color: this.Colors[color] || color });
       return this;
     }
 
-    this.show = () => new Promise(resolve => {
+    this.askForFile = (multiple = false, accept = null) => {
+      this.askingFor = 'file';
+      this.multipleFiles = multiple;
+      this.accept = accept;
+      return this;
+    }
 
+    this.askForInput = (placeholder = '', charLimit = null) => {
+      this.askingFor = 'input';
+      this.placeholder = placeholder;
+      this.charLimit = charLimit;
+      return this;
+    }
+
+    this.show = () => new Promise(resolve => {
+      /*
+       * Check if a string matches a MIME type :
+       * "image/*" matches "image/png" and "image/jpeg" and so on
+       * "image/gif" matches "image/gif" only
+       */
       let validateFileFormat = (acceptedTypes, type) => {
         return acceptedTypes.replace(/\s/g, '').split(',').filter(accept => {
           return new RegExp(accept.replace(/\*/g, '.*')).test(type);
         }).length > 0;
       }
 
-      if (this.askingForFile) {
+
+      if (this.askingFor === 'file') {
         this.buttons = [
           { text: 'Cancel', color: 'red' },
           { text: 'Select', color: 'green' }
+        ]
+      } else if (this.askingFor === 'input') {
+        this.buttons = [
+          { text: 'Cancel', color: 'red' },
+          { text: 'OK', color: 'green' }
         ]
       }
 
@@ -73,13 +96,17 @@ const MessageBox = class {
         buttonElement.style.backgroundColor = button.color;
         buttonElement.addEventListener('click', () => {
           boxContainer.remove();
-          if (this.askingForFile) {
+          if (this.askingFor === 'file') {
             if (button.text === 'Select') {
               if (this.multipleFiles)
                 resolve(this.fileInput.files || null);
-
               resolve(this.fileInput.files[0] || null);
             } else if (button.text === 'Cancel')
+              resolve(null);
+          } else if (this.askingFor === 'input') {
+            if (button.text === 'OK')
+              resolve(this.input.value);
+            else
               resolve(null);
           }
           resolve(button.text);
@@ -88,7 +115,7 @@ const MessageBox = class {
 
       })
 
-      if (this.askingForFile) {
+      if (this.askingFor === 'file') {
         this.fileInput = document.createElement('input');
         this.fileInput.type = 'file';
         this.fileInput.classList.add('message-box-file-input');
@@ -131,33 +158,27 @@ const MessageBox = class {
         }
         this.dropZone.appendChild(this.inputText);
         this.dropZone.appendChild(this.fileInput);
+      } else if (this.askingFor === 'input') {
+        this.input = document.createElement('input');
+        this.input.classList.add('message-box-input');
+        this.input.placeholder = this.placeholder;
+        if (this.charLimit)
+          this.input.maxLength = this.charLimit;
       }
 
 
       box.appendChild(title);
       box.appendChild(message);
-      if (this.askingForFile)
+      if (this.askingFor === 'file')
         box.appendChild(this.dropZone);
+      else if (this.askingFor === 'input')
+        box.appendChild(this.input);
       box.appendChild(buttons);
 
 
       boxContainer.appendChild(box);
       document.body.appendChild(boxContainer);
     })
-
-
-    if (title) {
-      this.setTitle(title);
-    }
-    if (message) {
-      this.setMessage(message);
-    }
-
-    if (buttons) {
-      this.buttons = buttons;
-    }
-
-    this.askingForFile = askingForFile;
   }
 }
 
