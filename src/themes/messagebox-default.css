@@ -112,3 +112,15 @@
 .message-box-file-input {
     display: none;
 }
+
+.message-box-input {
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.5);
+}
